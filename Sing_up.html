@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,7 +14,7 @@
         <h2>Create an account</h2>
         <p id="text-engagement">Enter your email to sign up for this app</p>
 
-        <form>
+        <form id="signup-form" onsubmit="submitForm(event)">
             <div class="name-container">
                 <label for="first-name" placeholder="First Name"></label>
                 <input type="text" placeholder="First Name" name="firstname" required>
@@ -32,7 +31,7 @@
                 <input type="password" placeholder="Password" name="psw" required>
             </div>
 
-            <button type="submit">Continue</button>
+            <a href="cat-a-log_profile.html" class="button-link">Continue</a>
         </form>
 
         <p>or continue with</p>
@@ -52,26 +51,46 @@
                 <p style="display: none;">Sign up with Google</p>
             </div>
         </button>
-        <p class="Sign">Already have an account? <a href="Log_in.html">Sign In</a></p>
+        <p class="Sign">Already have an account? <a href="LogIn.html">Sign In</a></p>
         <br>
         <p>By clicking continue, you agree to our <a href="#" class="terms">Terms of Service</a> and <a href="#" class="privacy">Privacy Policy</a></p>
     </div>
 
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
 
+            // Retrieve form input values
+            const firstName = document.querySelector("input[name='firstname']").value;
+            const lastName = document.querySelector("input[name='lastname']").value;
+            const email = document.querySelector("input[name='uname']").value;
+            const password = document.querySelector("input[name='psw']").value;
 
+            // Validate input data (you can add more validation as needed)
+            if (firstName.trim() === '' || lastName.trim() === '' || email.trim() === '' || password.trim() === '') {
+                alert("Please fill in all fields.");
+                return;
+            }
 
+            // Save user data to localStorage
+            const userData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            };
+            localStorage.setItem('userData', JSON.stringify(userData));
 
+            // Log the input data (in a real scenario, you would send this data to your backend for processing)
+            console.log("First Name:", firstName);
+            console.log("Last Name:", lastName);
+            console.log("Email:", email);
+            console.log("Password:", password);
 
+            // Optionally, you can redirect the user to another page after successful submission
+            // window.location.href = "success.html";
+        }
 
-
-
-
-
-
-
-
-
-
-
+    </script>
 </body>
 </html>
