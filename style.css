@@ -1,0 +1,158 @@
+body {
+    font-family: Inter;
+    background-color: #EFFFED;
+    color: #006400;
+}
+.logo-container {
+    display: flex;
+    align-items: center; 
+}
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    display: block;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+h1 {
+    color: #006400;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.container {
+    display: flex;
+    height: 100vh; 
+}
+
+.left, .right {
+    height: 100%; 
+}
+
+.left {
+    width: 25%; 
+}
+.menu {
+    margin-left: 20px;
+    margin-top: 30px;
+    color: #006400;
+    font-size: 20px;
+    font-weight: bold;
+    list-style-type: none; /* Забирає маркери списку */
+    padding: 0; /* Забирає внутрішні відступи від списку */
+}
+
+.menu li {
+    display: flex; /* Встановлює елементи списку у рядок */
+    align-items: center; /* Вирівнює вміст по вертикалі по центру */
+    margin-bottom: 10px; /* Відстань між елементами списку */
+}
+
+.icon{
+    width: 20px; /* Розмір іконки, замініть на ваші потреби */
+    height: 20px; /* Розмір іконки, замініть на ваші потреби */
+    margin-right: 5px; /* Простір між іконкою та текстом */
+}
+.icon1 {
+    width: 14px; /* Новий розмір іконки для FAQ, замініть на ваші потреби */
+    height: 15px; 
+    margin-right: 5px;/* Новий розмір іконки для FAQ, замініть на ваші потреби */
+}
+.right {
+    width: 75%; 
+}
+        .profile-container {
+            width: 500px;
+            margin-left: 100px;
+            padding: 20px;
+            background-color: #EFFFED;
+        }
+        .profile-header {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .edit {
+            color: #006400;
+            font-size: 25px;
+            font-weight: bold;
+            font-size: 23px;
+            padding-bottom: 20px;
+        }
+        .profile-header img {
+            width: 50px; /* Розмір фото */
+            height: 50px;
+            border-radius: 50%; /* Рамка у круглій формі */
+            margin-right: 20px; /* Відступ між фото та текстом */
+        }
+        .profile-header h2{
+            margin: 0;
+            font-size: 18px;
+        }
+        .photo {
+            margin: 0;
+            font-size: 14px;
+        }
+        .profile-info {
+            color: #006400;
+            margin-bottom: 20px;
+        }
+        .profile-info label {
+            color: #006400;
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .profile-info input[type="text"],
+        .profile-info input[type="email"],
+        .profile-info input[type="password"],
+        .profile-info textarea,
+        .profile-info input[type="date"] {
+    color: #006400;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd; /* Змінений бордер */
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+        .profile-info input[type="password"] {
+            color: #006400;
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .profile-info textarea {
+            color: #006400;
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+        .profile-options {
+            text-align: center;
+        }
+        .profile-options button {
+            background-color: #006400;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .profile-options button:hover {
+            background-color: #45a049;
+        }
+        .email1 {
+            margin-top: 8px;
+        }
+        .profile-info input[type="date"] {
+            color: green;
+        }
