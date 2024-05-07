@@ -74,6 +74,8 @@ button {
     cursor: pointer;
     width: 400px;
     height: 40px;
+    line-height: 40px; /* Adjusted to match button height */
+    text-align: center; /* Horizontally center the text */
 }
 
 p {
