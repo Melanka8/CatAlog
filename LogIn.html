@@ -6,20 +6,29 @@
     <title>Log In</title>
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .message {
+            display: none;
+            color: red;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
     <img src="logo.png" alt="Logo" class="logo">
     <div class="login-container">
         <h1>Cat•a•Log</h1>
         <h2>Log In</h2>
-        <form>
+        <form id="login-form">
             <label for="email" placeholder="Enter Your email"></label>
             <input type="text" placeholder="  email@domain.com" name="uname" required>
+            <span class="message email-message">Email should contain an '@' symbol</span>
 
             <label for="password" placeholder="email@domain.com"></label>
             <input type="password" placeholder="  Password" name="psw" required>
+            <span class="message password-message">Password should contain at least 8 characters</span>
 
-            <a href="cat-a-log_profile.html" class="button-link">Continue</a>
+            <button type="submit" class="button-link">Continue</button>
         </form>
         <p>or continue with</p>
         <button class="gsi-material-button" style="width:400px">
@@ -43,41 +52,37 @@
         <p>By clicking continue, you agree to our <a href="#" class="terms">Terms of Service</a> and <a href="#" class="privacy">Privacy Policy</a></p>
     </div>
     <script>
-        // Function to save user account data during sign up
-        function signUp(event) {
+        document.getElementById('login-form').addEventListener('submit', function (event) {
             event.preventDefault();
 
-            // Retrieve form input values
-            const email = document.querySelector("input[name='uname']").value;
-            const password = document.querySelector("input[name='psw']").value;
+            var form = event.target;
+            var emailInput = form.querySelector("input[name='uname']");
+            var passwordInput = form.querySelector("input[name='psw']");
+            var isValid = true;
 
-            // Save user account data to localStorage
-            localStorage.setItem(email, password);
+            // Check if email contains '@' symbol
+            if (!emailInput.value.includes('@')) {
+                isValid = false;
+                document.querySelector('.email-message').style.display = 'block';
+            } else {
+                document.querySelector('.email-message').style.display = 'none';
+            }
 
-            alert("Account created successfully!");
-        }
+            // Check password length
+            if (passwordInput.value.length < 8) {
+                isValid = false;
+                document.querySelector('.password-message').style.display = 'block';
+            } else {
+                document.querySelector('.password-message').style.display = 'none';
+            }
 
-        // Function to perform login
-        function login(event) {
-            event.preventDefault();
-
-            // Retrieve form input values
-            const email = document.querySelector("input[name='uname']").value;
-            const password = document.querySelector("input[name='psw']").value;
-
-            // Retrieve user account data from localStorage
-            const savedPassword = localStorage.getItem(email);
-
-            // Check if the entered password matches the saved password
-            if (savedPassword === password) {
+            if (isValid) {
                 alert("Login successful!");
-                // Redirect to dashboard or another page
-                window.location.href = "dashboard.html";
+                window.location.href = "cat-a-log_profile.html";
             } else {
                 alert("Invalid email or password. Please try again.");
             }
-        }
+        });
     </script>
-
 </body>
 </html>

@@ -1,74 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
-<title>Profile</title>
-
+    <style>
+        .message {
+            display: none;
+            color: red;
+            font-size: 12px;
+        }
+    </style>
 </head>
 <body>
-
-<div class="container">
+    <div class="container">
         <div class="left">
-          <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="logo">
-        <h1 class="title">Cat•a•Log</h1>
-        </div>
-        <ul class="menu">
-        <li><img src="book.png" alt="Dog Icon" class="icon"> Catalog</li>
-        <li><img src="person.png" alt="Dog Icon" class="icon"> Profile</li>
-        <li><img src="bell.png" alt="Dog Icon" class="icon"> Notifications</li>
-        <li><img src="bookmark.png" alt="Dog Icon" class="icon"> Saved pets</li>
-        <li><img src="chat.png" alt="Dog Icon" class="icon"> Chat</li>
-        <li><img src="question.png" alt="Dog Icon" class="icon1"> FAQ</li>
-        </ul>
+            <div class="logo-container">
+                <img src="logo.png" alt="Logo" class="logo">
+                <h1 class="title">Cat•a•Log</h1>
+            </div>
+            <ul class="menu">
+                <li><img src="book.png" alt="Dog Icon" class="icon"> Catalog</li>
+                <li><img src="person.png" alt="Dog Icon" class="icon"> Profile</li>
+                <li><img src="bell.png" alt="Dog Icon" class="icon"> Notifications</li>
+                <li><img src="bookmark.png" alt="Dog Icon" class="icon"> Saved pets</li>
+                <li><img src="chat.png" alt="Dog Icon" class="icon"> Chat</li>
+                <li><img src="question.png" alt="Dog Icon" class="icon1"> FAQ</li>
+            </ul>
         </div>
         <div class="right">
-                <div class="profile-container">
-        <h1 class="edit">Edit profile</h1>
-        <div class="profile-header">
-            <img src="photo_cat.png" alt="Profile Photo">
-            <div>
-                <h2>Helena Hills</h2>
-                <p class="photo">Change profile photo</p>
+            <div class="profile-container">
+                <h1 class="edit">Edit profile</h1>
+                <div class="profile-header">
+                    <img src="photo_cat.png" alt="Profile Photo">
+                    <div>
+                        <h2>Helena Hills</h2>
+                        <p class="photo">Change profile photo</p>
+                    </div>
+                </div>
+                <form id="profile-form">
+                    <div class="profile-info">
+                        <label for="first-name">First Name:</label>
+                        <input type="text" id="first-name" name="first-name" value="First name" onfocus="clearField('first-name')">
+                        <label for="last-name">Last Name:</label>
+                        <input type="text" id="last-name" name="last-name" value="Last name" onfocus="clearField('last-name')">
+                        <div class="birth">
+                            <label for="birthdate">Birthdate:</label>
+                            <input type="date" id="birthdate" name="birthdate">
+                        </div>
+                        <div class="email1">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" value="email@domain.com" oninput="validateEmail()">
+                            <span class="message email-message">Email should contain an '@' symbol</span>
+                        </div>
+                        <label for="bio">Bio:</label>
+                        <textarea id="bio" name="bio" onfocus="clearField('bio')">Write something about yourself</textarea>
+                        <h1 class="edit">Change password</h1>
+                        <label for="old-password">Old password:</label>
+                        <input type="password" id="old-password" name="old-password" value="">
+                        <label for="new-password">New password:</label>
+                        <input type="password" id="new-password" name="new-password" value="">
+                        <span class="message password-message">Password should contain at least 8 characters</span>
+                    </div>
+                    <div class="profile-options">
+                        <button type="submit">Save Changes</button>
+                    </div>
+                </form>
             </div>
         </div>
-        <form>
-            <div class="profile-info">
-                <label for="first-name">First Name:</label>
-                <input type="text" id="first-name" name="first-name" value="First name" onfocus="clearField('first-name')">
-                <label for="last-name">Last Name:</label>
-                <input type="text" id="last-name" name="last-name" value="Last name" onfocus="clearField('last-name')">
-                <div class="birth">
-                <label for="birthdate">Birthdate:</label>
-                <input type="date" id="birthdate" name="birthdate">
-                </div>
-                <div class = "email1">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="email@domain.com" onfocus="clearField('email')">
-                </div>
-                <label for="bio">Bio:</label>
-                <textarea id="bio" name="bio" onfocus="clearField('bio')">Write something about yourself</textarea>
-                <h1 class="edit">Change password</h1>
-                <label for="change password">Old password:</label>
-                <input type="password" id="old-password" name="old-password" value="">
-                <label for="change password">New password:</label>
-                <input type="password" id="new-password" name="new-password" value="">
-            </div>
-            <div class="profile-options">
-                <button type="submit">Save Changes</button>
-            </div>
-        </form>
     </div>
 
     <script>
+        // Function to clear field value on focus
         function clearField(fieldId) {
             document.getElementById(fieldId).value = '';
         }
-    </script>
-        </div>
-    </div>
 
+        // Function to validate email format
+        function validateEmail() {
+            var emailInput = document.getElementById('email');
+            var message = document.querySelector('.email-message');
+
+            if (!emailInput.value.includes('@')) {
+                message.style.display = 'block';
+                return false;
+            } else {
+                message.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Function to validate password length
+        function validatePassword() {
+            var passwordInput = document.getElementById('new-password');
+            var message = document.querySelector('.password-message');
+
+            if (passwordInput.value.length < 8) {
+                message.style.display = 'block';
+                return false;
+            } else {
+                message.style.display = 'none';
+                return true;
+            }
+        }
+
+        // Event listener for profile form submission
+        document.getElementById('profile-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var isEmailValid = validateEmail();
+            var isPasswordValid = validatePassword();
+
+            if (!isEmailValid || !isPasswordValid) {
+                alert('Please make sure your password contains at least 8 characters.');
+            } else {
+                alert('Changes saved successfully!');
+            }
+        });
+    </script>
 </body>
 </html>

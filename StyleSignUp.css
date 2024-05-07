@@ -209,3 +209,19 @@ a {
     a:hover {
         text-decoration: underline;
     }
+
+
+.message {
+    display: none;
+    color: red;
+    font-size: 12px;
+}
+
+.success-message {
+    display: none;
+    color: green;
+    font-size: 24px; /* Change the font size as desired */
+    margin-top: 10px;
+    margin-bottom: 20px; /* Add margin below the success message */
+    text-align: center;
+}

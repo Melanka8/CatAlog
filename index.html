@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,24 +14,28 @@
         <h2>Create an account</h2>
         <p id="text-engagement">Enter your email to sign up for this app</p>
 
-        <form>
+        <form id="signup-form">
             <div class="name-container">
-                <label for="first-name" placeholder="First Name"></label>
+                <label for="first-name">First Name</label>
                 <input type="text" placeholder="First Name" name="firstname" required>
+                <span class="message first-name-message">First name should contain only text symbols</span>
 
-                <label for="last-name" placeholder="Last Name"></label>
+                <label for="last-name">Last Name</label>
                 <input type="text" placeholder="Last Name" name="lastname" required>
+                <span class="message last-name-message">Last name should contain only text symbols</span>
             </div>
 
             <div class="column-container">
-                <label for="email" placeholder="Email"></label>
-                <input type="text" placeholder="email@domain.com" name="uname" required>
+                <label for="email">Email</label>
+                <input type="email" placeholder="email@domain.com" name="email" required>
+                <span class="message email-message">Email should contain an '@' symbol</span>
 
-                <label for="password" placeholder="Password"></label>
-                <input type="password" placeholder="Password" name="psw" required>
+                <label for="password">Password</label>
+                <input type="password" placeholder="Password" name="password" required>
+                <span class="message password-message">Password should contain at least 8 characters</span>
             </div>
 
-            <a href="cat-a-log_profile.html" class="button-link">Continue</a>
+            <button type="submit" class="button-link">Continue</button>
         </form>
 
         <p>or continue with</p>
@@ -55,7 +58,110 @@
         <p class="Sign">Already have an account? <a href="LogIn.html">Sign In</a></p>
         <br>
         <p>By clicking continue, you agree to our <a href="#" class="terms">Terms of Service</a> and <a href="#" class="privacy">Privacy Policy</a></p>
+
+        <div class="success-message" id="success-message"><h2>Account created successfully!</h2> 
+            <button onclick="redirectToProfile()">OK</button>
+        </div>
     </div>
 
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            var form = event.target;
+            var inputs = form.querySelectorAll('input[required]');
+            var passwordInput = form.querySelector('input[name="password"]');
+            var isValid = true;
+
+            inputs.forEach(function (input) {
+                if (!input.value) {
+                    isValid = false;
+                    input.classList.add('invalid');
+                } else {
+                    input.classList.remove('invalid');
+                }
+            });
+
+            // Check if first name and last name contain only text symbols (letters)
+            var nameInputs = form.querySelectorAll('input[name="firstname"], input[name="lastname"]');
+            nameInputs.forEach(function (nameInput) {
+                if (!/^[a-zA-Z]+$/.test(nameInput.value)) {
+                    isValid = false;
+                    nameInput.classList.add('invalid');
+                } else {
+                    nameInput.classList.remove('invalid');
+                }
+            });
+
+            // Check if email contains '@' symbol
+            var emailInput = form.querySelector('input[name="email"]');
+            if (!emailInput.value.includes('@')) {
+                isValid = false;
+                emailInput.classList.add('invalid');
+            } else {
+                emailInput.classList.remove('invalid');
+            }
+
+            // Check password length
+            if (passwordInput.value.length < 8) {
+                isValid = false;
+                passwordInput.classList.add('invalid');
+            } else {
+                passwordInput.classList.remove('invalid');
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+                alert('Please fill in all required fields, ensure that the password contains at least 8 characters, and use only text symbols (letters) for first and last names.');
+            } else {
+                document.getElementById('success-message').style.display = 'block';
+                event.preventDefault();
+            }
+        });
+
+        function redirectToProfile() {
+            window.location.href = "cat-a-log_profile.html"; // Redirect to another page
+        }
+
+        // Event listeners for input fields
+        var firstNameInput = document.querySelector('input[name="firstname"]');
+        var lastNameInput = document.querySelector('input[name="lastname"]');
+        var emailInput = document.querySelector('input[name="email"]');
+        var passwordInput = document.querySelector('input[name="password"]');
+
+        firstNameInput.addEventListener('input', function () {
+            var message = document.querySelector('.first-name-message');
+            if (!/^[a-zA-Z]+$/.test(this.value)) {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        });
+
+        lastNameInput.addEventListener('input', function () {
+            var message = document.querySelector('.last-name-message');
+            if (!/^[a-zA-Z]+$/.test(this.value)) {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        });
+
+        emailInput.addEventListener('input', function () {
+            var message = document.querySelector('.email-message');
+            if (!this.value.includes('@')) {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        });
+
+        passwordInput.addEventListener('input', function () {
+            var message = document.querySelector('.password-message');
+            if (this.value.length < 8) {
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
